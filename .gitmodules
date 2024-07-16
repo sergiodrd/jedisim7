@@ -1,0 +1,6 @@
+[submodule "extern/Unity"]
+	path = extern/Unity
+	url = https://github.com/ThrowTheSwitch/Unity.git
+[submodule "extern/tomlc99"]
+	path = extern/tomlc99
+	url = https://github.com/GlitchedPolygons/tomlc99.git
