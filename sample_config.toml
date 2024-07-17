@@ -1,0 +1,58 @@
+[inputs]
+num_galaxies = 45000 #number of galaxies to simulate
+source_images_path = "input_stamps/" # path to the folder where the input stamps are
+# custom_catalog = "catalog.txt" # add this entry to use a custom catalog file
+
+[physics]
+HST_pix_scale = 0.06 #HST pixel scale (arseconds per pixel)
+LSST_pix_scale = 0.263 #LSST pixscale (arcsecords per pixel)
+exp_time = 1 #exposure time in seconds
+noise_mean = 0.0001 #mean for poisson noise
+min_magnitude = 22 #minimum magnitude galaxy to simulate (inclusive)
+max_magnitude = 28 #maximum magnitude galaxy to simulate (inclusive)
+single_redshift = true #use a single source galaxy redshift?
+fixed_redshift = 1 #the single source galaxy redshift to use
+power = 0.34 #power for the power law galaxy distribution
+lens_z = 0.07 #the redshift of the lenses
+
+[[physics.lenses]] # double brackets indicate an array of tables
+x_center_pixel = 6144
+y_center_pixel = 6144
+profile = "NFW" # Options are: "SIS", "NFW", 'NFW_const_dist'
+profile_param_1 = 200.0 # profile params have different meanings per profile
+profile_param_2 = 4.0 # profile params have different meanings per profile
+
+# add another lens entry by adding a new [[physics.lenses]] table
+# [[physics.lenses]]
+# x_center_pixel = 6144
+# y_center_pixel = 6144
+# profile = "NFW" # Options are: "SIS", "NFW", 'NFW_const_dist'
+# profile_param_1 = 200.0 # profile params have different meanings per profile
+# profile_param_2 = 4.0 # profile params have different meanings per profile
+
+[physics.convolve]
+psf_file = "physics_settings/psf_scalednew_60.fits" #the PSF to use
+
+[physics.databases]
+radius_db_path = "simdatabase/radius_db/" # must end with "/"
+red_db_path = "simdatabase/red_db/" # must end with "/"
+
+[output_image_settings]
+final_size_x = 12288 #number of pixels in the x direction
+final_size_y = 12288 #number of pixels in the y direction
+x_border = 301 #must be large enough so that no image can overflow
+y_border = 301 #must be large enough so that no image can overflow
+x_trim = 0 #larger than x_border to ensure no edge effects
+y_trim = 0 #larger than y_border to ensure no edge effects
+
+# omit any line to skip outputting this stage
+[outputs]
+# catalog_path = "out/catalog.txt"
+# transformed_catalog_path = "out/distorted.txt"
+# transformed_stamps_path = "out/stamps/" # must end with "/"
+# distorted_stamps_path = "out/distorted/" # must end with "/"
+# HST_path = "out/HST.fits" # HST image after transforming, distorting, and pasting
+# HST_convolved_path = "out/HST_convolved.fits" # HST image after convolution
+# HST_convolved_noise_path = "out/HST_convolved_noise.fits" # HST image after noise
+# LSST_convolved_path = "out/LSST_convolved.fits" # LSST image after convolution
+LSST_convolved_noise_path = "out/LSST_convolved_noise.fits" # LSST image after noise
