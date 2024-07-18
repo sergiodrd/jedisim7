@@ -1,7 +1,11 @@
+# DO NOT MODIFY THIS FILE.
+# THIS FILE IS USED FOR UNIT TESTING
+# IF YOU WANT TO USE THIS FILE, PLEASE MAKE A COPY
+
 [inputs]
 num_galaxies = 45000 #number of galaxies to simulate
 source_images_path = "input_stamps/" # path to the folder where the input stamps are
-# custom_catalog = "catalog.txt" # add this entry to use a custom catalog file
+custom_catalog = "catalog.txt" # add this entry to use a custom catalog file
 
 [physics]
 HST_pix_scale = 0.06 #HST pixel scale (arseconds per pixel)
@@ -23,12 +27,12 @@ profile_param_1 = 200.0 # profile params have different meanings per profile
 profile_param_2 = 4.0 # profile params have different meanings per profile
 
 # add another lens entry by adding a new [[physics.lenses]] table
-# [[physics.lenses]]
-# x_center_pixel = 6144
-# y_center_pixel = 6144
-# profile = "NFW" # Options are: "SIS", "NFW", 'NFW_const_dist'
-# profile_param_1 = 200.0 # profile params have different meanings per profile
-# profile_param_2 = 4.0 # profile params have different meanings per profile
+[[physics.lenses]]
+x_center_pixel = 6144
+y_center_pixel = 6144
+profile = "SIS" # Options are: "SIS", "NFW", 'NFW_const_dist'
+profile_param_1 = 200.0 # profile params have different meanings per profile
+profile_param_2 = 4.0 # profile params have different meanings per profile
 
 [physics.convolve]
 psf_file = "physics_settings/psf_scalednew_60.fits" #the PSF to use
@@ -47,12 +51,12 @@ y_trim = 0 #larger than y_border to ensure no edge effects
 
 # omit any line to skip outputting this stage
 [outputs]
-# catalog_path = "out/catalog.txt"
-# transformed_catalog_path = "out/distorted.txt"
-# transformed_stamps_path = "out/stamps/" # must end with "/"
-# distorted_stamps_path = "out/distorted/" # must end with "/"
-# HST_path = "out/HST.fits" # HST image after transforming, distorting, and pasting
-# HST_convolved_path = "out/HST_convolved.fits" # HST image after convolution
-# HST_convolved_noise_path = "out/HST_convolved_noise.fits" # HST image after noise
-# LSST_convolved_path = "out/LSST_convolved.fits" # LSST image after convolution
+catalog_path = "out/catalog.txt"
+transformed_catalog_path = "out/distorted.txt"
+transformed_stamps_path = "out/stamps/" # must end with "/"
+distorted_stamps_path = "out/distorted/" # must end with "/"
+HST_path = "out/HST.fits" # HST image after transforming, distorting, and pasting
+HST_convolved_path = "out/HST_convolved.fits" # HST image after convolution
+HST_convolved_noise_path = "out/HST_convolved_noise.fits" # HST image after noise
+LSST_convolved_path = "out/LSST_convolved.fits" # LSST image after convolution
 LSST_convolved_noise_path = "out/LSST_convolved_noise.fits" # LSST image after noise
